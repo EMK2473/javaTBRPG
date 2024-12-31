@@ -6,20 +6,26 @@ public class CharacterCreator {
 
     public static Character createCharacter(Scanner scanner) {
         // Enter name
-        System.out.print("Enter character name: ");
+        System.out.println("\n+----------------------------------------------+");
+        System.out.println("              Enter character name: ");
+        System.out.println("+----------------------------------------------+");
         String name = scanner.nextLine();
         
         // Enter race option
-        System.out.println("Choose a character race: ");
-        System.out.println("1. Human");
-        System.out.println("2. Half-Elf");
-        System.out.println("3. Elf");
-        System.out.println("4. Dwarf");
-        System.out.println("5. Halfling");
-        System.out.println("6. Tiefling");
-        System.out.println("7. Dragonborn");
-        System.out.println("8. Gnome");
-        System.out.println("9. Half-Orc");
+        System.out.println("\n+----------------------------------------------+");
+        System.out.println("            Choose a character race");
+        System.out.println("+----------------------------------------------+");
+        System.out.printf("| %-15s : %-25s  |\n", "1. Human", "");
+        System.out.printf("| %-15s : %-25s  |\n", "2. Half-Elf", "");
+        System.out.printf("| %-15s : %-25s  |\n", "3. Elf", "");
+        System.out.printf("| %-15s : %-25s  |\n", "4. Dwarf", "");
+        System.out.printf("| %-15s : %-25s  |\n", "5. Halfling", "");
+        System.out.printf("| %-15s : %-25s  |\n", "6. Tiefling", "");
+        System.out.printf("| %-15s : %-25s  |\n", "7. Dragonborn", "");
+        System.out.printf("| %-15s : %-25s  |\n", "8. Gnome", "");
+        System.out.printf("| %-15s : %-25s  |\n", "9. Half-Orc", "");
+        System.out.println("+----------------------------------------------+");
+        System.out.print("Choose a race (1-9): ");
         
         int raceChoice = scanner.nextInt();
         scanner.nextLine();
@@ -48,19 +54,22 @@ public class CharacterCreator {
         }
 
         
-        System.out.println("Choose a class:");
-        System.out.println("1. Barbarian");
-        System.out.println("2. Bard");
-        System.out.println("3. Cleric");
-        System.out.println("4. Druid");
-        System.out.println("5. Fighter");
-        System.out.println("6. Monk");
-        System.out.println("7. Paladin");
-        System.out.println("8. Ranger");
-        System.out.println("9. Rogue");
-        System.out.println("10. Sorcerer");
-        System.out.println("11. Warlock");
-        System.out.println("12. Wizard");
+        System.out.println("\n+----------------------------------------------+");
+        System.out.println("             Choose a character class");
+        System.out.println("+----------------------------------------------+");
+        System.out.printf("| %-15s : %-25s  |\n", "1. Barbarian", "");
+        System.out.printf("| %-15s : %-25s  |\n", "2. Bard", "");
+        System.out.printf("| %-15s : %-25s  |\n", "3. Cleric", "");
+        System.out.printf("| %-15s : %-25s  |\n", "4. Druid", "");
+        System.out.printf("| %-15s : %-25s  |\n", "5. Fighter", "");
+        System.out.printf("| %-15s : %-25s  |\n", "6. Monk", "");
+        System.out.printf("| %-15s : %-25s  |\n", "7. Paladin", "");
+        System.out.printf("| %-15s : %-25s  |\n", "8. Ranger", "");
+        System.out.printf("| %-15s : %-25s  |\n", "9. Rogue", "");
+        System.out.printf("| %-15s : %-25s  |\n", "10. Sorcerer", "");
+        System.out.printf("| %-15s : %-25s  |\n", "11. Warlock", "");
+        System.out.printf("| %-15s : %-25s  |\n", "12. Wizard", "");
+        System.out.println("+----------------------------------------------+");
         System.out.print("Choose a class (1-12): ");
 
         int classChoice = scanner.nextInt();

@@ -24,10 +24,13 @@ public class Main {
     }
 
     private static int displayMenu(Scanner scanner) {
-        System.out.println("\nMain Menu");
-        System.out.println("1. Continue");
-        System.out.println("2. New Game");
-        System.out.println("3. Exit");
+        System.out.println("\n+----------------------------------------------+");
+        System.out.println("                   Main Menu");
+        System.out.println("+----------------------------------------------+");
+        System.out.printf("| %-15s : %-25s  |\n", "1. Continue", "");
+        System.out.printf("| %-15s : %-25s  |\n", "2. New Game", "");
+        System.out.printf("| %-15s : %-25s  |\n", "3. Exit", "");
+        System.out.println("+----------------------------------------------+");
         System.out.print("Choose an option: ");
         
         int choice = scanner.nextInt();

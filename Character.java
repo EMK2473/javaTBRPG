@@ -35,31 +35,49 @@ public class Character {
     }
 
     public void displayCharacterInfo() {
-        System.out.println("\nCharacter Information:");
-        System.out.println("Name: " + name);
-        System.out.println("Race: " + race);
-        System.out.println("Class: " + classType);
-        System.out.println("HP: " + HP + "/" + maxHP);
-        System.out.println("MP: " + MP + "/" + maxMP);
-        System.out.println("XP: " + XP);
-        System.out.println("XP to Level: " + xpToLevel);
-        System.out.println("AC: " + AC);
-        System.out.println("DC: " + DC);
-        System.out.println("Weapon: " + weapon);
-        
-         // Display abilities using the LinkedHashMap (which maintains insertion order)
-        System.out.println("Abilities:");
-        for (Map.Entry<String, Integer> entry : abilities.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
-        }
+        // Print the character info in a table-like format
+        System.out.println("\n+----------------------------------------------+");
+        System.out.println("               Character Information");
+        System.out.println("+----------------------------------------------+");
+        System.out.printf("| %-15s : %-25s  |\n", "Name", name);
+        System.out.printf("| %-15s : %-25s  |\n", "Race", race);
+        System.out.printf("| %-15s : %-25s  |\n", "Class", classType);
+        System.out.printf("| %-15s : %-3d/%-15d        |\n", "HP", HP, maxHP);
+        System.out.printf("| %-15s : %-3d/%-15d        |\n", "MP", MP, maxMP);
+        System.out.printf("| %-15s : %-25d  |\n", "XP", XP);
+        System.out.printf("| %-15s : %-25d  |\n", "XP to Level", xpToLevel);
+        System.out.printf("| %-15s : %-25d  |\n", "AC", AC);
+        System.out.printf("| %-15s : %-25d  |\n", "DC", DC);
+        System.out.printf("| %-15s : %-25s  |\n", "Weapon", weapon);
+        System.out.println("+----------------------------------------------+");
     
-        // Display spells
-        System.out.println("Spells:");
-        for (Map.Entry<String, Integer> spell : spells.entrySet()) {
-            System.out.println(spell.getKey() + " (Cost: " + spell.getValue() + " MP)");
+        // Display Abilities in a table format
+        System.out.println("\n+----------------------------------------------+");
+        System.out.println("                  Abilities");
+        System.out.println("+----------------------------------------------+");
+        if (abilities.isEmpty()) {
+            System.out.println("| No abilities available.               |");
+        } else {
+            for (Map.Entry<String, Integer> entry : abilities.entrySet()) {
+                System.out.printf("| %-15s : %-5d                      |\n", entry.getKey(), entry.getValue());
+            }
         }
+        System.out.println("+----------------------------------------------+");
+    
+        // Display Spells in a table format
+        System.out.println("\n+----------------------------------------------+");
+        System.out.println("                  Spells");
+        System.out.println("+----------------------------------------------+");
+        if (spells.isEmpty()) {
+            System.out.println("| No spells available.                 |");
+        } else {
+            for (Map.Entry<String, Integer> spell : spells.entrySet()) {
+                System.out.printf("| %-20s : %-5d MP              |\n", spell.getKey(), spell.getValue());
+            }
+        }
+        System.out.println("+----------------------------------------------+\n");
     }
-
+    
     // Load character data from csv file
     public static Character loadCharacter() {
         File file = new File("character.csv");
