@@ -1,4 +1,3 @@
-// Encounter.java
 import java.util.*;
 import java.io.*;
 
@@ -8,11 +7,13 @@ public class Encounter {
         List<String> dialogLines;
         List<String> actions;
         Map<String, EncounterNode> nextNodes;
+        boolean visited; // Track if the node has been visited
 
         public EncounterNode(List<String> dialogLines, List<String> actions) {
             this.dialogLines = dialogLines;
             this.actions = actions;
             this.nextNodes = new HashMap<>();
+            this.visited = false; // Default to not visited
         }
 
         public void addNextNode(String action, EncounterNode node) {
@@ -21,6 +22,14 @@ public class Encounter {
 
         public EncounterNode getNextNode(String action) {
             return nextNodes.get(action);
+        }
+
+        public boolean isVisited() {
+            return visited;
+        }
+
+        public void setVisited(boolean visited) {
+            this.visited = visited;
         }
     }
 
@@ -35,7 +44,13 @@ public class Encounter {
         EncounterNode currentNode = root;
 
         while (currentNode != null) {
-            displayDialog(currentNode.dialogLines, character);
+            if (currentNode.isVisited()) {
+                System.out.println("You have been here before. The area seems familiar.");
+                System.out.println("Node visited: " + currentNode.isVisited());
+            } else {
+                displayDialog(currentNode.dialogLines, character);
+                currentNode.setVisited(true); // Mark the node as visited
+            }
 
             if (currentNode.actions.isEmpty()) {
                 break; // End of encounter
@@ -64,9 +79,9 @@ public class Encounter {
     private void displayDialog(List<String> dialogLines, Character character) {
         for (String line : dialogLines) {
             String processedLine = line.replace("{character.name}", character.name)
-                                       .replace("{character.class}", character.getClass().getSimpleName());
+                                       .replace("{character.class}", character.classType);
             System.out.println(processedLine);
-            delay(1000); // Delay between lines
+            delay(2000); // Delay between lines
         }
     }
 
@@ -83,9 +98,14 @@ public class Encounter {
         EncounterNode start = new EncounterNode(
             Arrays.asList(
                 "{character.name}'s adventure begins in the land of Eryndor.",
-                "A realm where royalty rules with iron crowns and commonfolk serve the ruling kingdom steadfastly."
+                "A realm where royalty rules with iron crowns and commonfolk serve the ruling kingdom steadfastly.",
+                "{character.name} arrives at the perimeter of Castle Varathorn, a towering fortress nestled in the mountains.",
+                "Clutched in your hand is a letter bearing the royal seal of King Aldrin Greyhawk.",
+                "The letter, though cryptic, makes it clear: you have been summoned by the king for your unique {character.class} skills.",
+                "The letter insists that this is a matter of great importance, one that cannot be refused.",
+                "Failure to comply would surely result in consequences you cannot afford."
             ),
-            Arrays.asList("Proceed to Castle", "Explore Nearby")
+            Arrays.asList("Proceed to Castle")
         );
 
         EncounterNode castle = new EncounterNode(
@@ -104,6 +124,7 @@ public class Encounter {
             Collections.singletonList("Continue Exploring")
         );
 
+        castle.addNextNode("Turn Back", start);
         start.addNextNode("Proceed to Castle", castle);
         start.addNextNode("Explore Nearby", explore);
 
