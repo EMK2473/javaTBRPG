@@ -1,6 +1,5 @@
 // Main.java
 import java.io.*;
-import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -11,7 +10,7 @@ public class Main {
             int choice = displayMenu(scanner);
 
             switch (choice) {
-                case 1 -> continueGame();
+                case 1 -> continueGame(scanner);
                 case 2 -> newGame(scanner);
                 case 3 -> {
                     System.out.println("Exiting the game. Goodbye!");
@@ -38,15 +37,17 @@ public class Main {
         return choice;
     }
 
-    public static void continueGame() {
+    public static void continueGame(Scanner scanner) {
         Character character = Character.loadCharacter();
         try {
             spinnerAnimation();
         } catch (InterruptedException e) {
             System.err.println("Animation interrupted: " + e.getMessage());
         }
+
         if (character != null) {
             character.displayCharacterInfo();
+            startEncounter(scanner, character);
         }
     }
     
@@ -55,6 +56,13 @@ public class Main {
         character.saveCharacterToCSV();
         character.displayCharacterInfo();
         System.out.println("Created Character.csv file! Character saved!");
+        startEncounter(scanner, character);
+    }
+
+    private static void startEncounter(Scanner scanner, Character character) {
+        System.out.println("Starting an encounter...");
+        Encounter encounter = new Encounter();
+        encounter.startEncounter(character);
     }
 
     public static void spinnerAnimation() throws InterruptedException {
