@@ -24,6 +24,8 @@ public class Main {
         }
     }
 
+    // TODO
+    // Modularize non-main Methods into new files for handling Game Start/Load?
     private static int displayMenu(Scanner scanner) {
         System.out.println("\n+----------------------------------------------+");
         System.out.println("                   Main Menu");
@@ -67,6 +69,8 @@ public class Main {
         encounter.startEncounter(character);
     }
 
+    // TODO
+    // Create Utils file for utility functions 
     public static void spinnerAnimation() throws InterruptedException {
         String[] spinner = { "\\", "|", "/", "-" }; // Frames for the spinner
         for (int i = 0; i < 17; i++) { 
