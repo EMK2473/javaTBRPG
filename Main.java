@@ -2,6 +2,8 @@
 import java.io.*;
 import java.util.Scanner;
 
+import javaTBRPG.Encounter;
+
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -66,11 +68,11 @@ public class Main {
     }
 
     public static void spinnerAnimation() throws InterruptedException {
-        String[] spinner = { "\\", "|", "/", "_" }; // Frames for the spinner
+        String[] spinner = { "\\", "|", "/", "-" }; // Frames for the spinner
         for (int i = 0; i < 17; i++) { 
             System.out.print("\rLoading... " + spinner[i % spinner.length]);
-            Thread.sleep(100); // 100ms delay for animation
+            Thread.sleep(75); // 100ms delay for animation
         }
-        System.out.print("\r"); // Clears the spinner line
+        System.out.print("\r"); // Clear the spinner line
     }
 }
